@@ -45,4 +45,9 @@ func main() {
 	fmt.Println(latlonthing.LATITUDE, latlonthing.LONGITUDE)
 	// we now have the users latitude and longitude based on the user ip, stored as latlonthing.LATITUDE and latlonthing.LONGITUDE as float64
 
+	finishedweatherrequest := string("https://api.open-meteo.com/v1/forecast?latitude=" + latlonthing.LATITUDE + "&longitude=" + latlonthing.LONGITUDE + "&current=temperature_2m,wind_speed_10m,wind_gusts_10m,precipitation&timezone=auto")
+	wthrreq, _ := http.Get(finishedweatherrequest)
+	stringwthrreq := ioutil.ReadAll(wthrreq.Body)
+	defer wthrreq.Body.Close()
+
 }
